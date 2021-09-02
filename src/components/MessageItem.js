@@ -3,12 +3,18 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 const MessageItem = ({ date, body, person}) => {
+  const convertFromTimestampToReadable = (time) => {
+    const milliSeconds = time * 1000;
+    const dateInWord = new Date(milliSeconds);
+    const dateToString = dateInWord.toLocaleString();
+    return dateToString;
+  }
   return (
     <TouchableOpacity>
       <View style={styles.container}>
       <Text>From: {person}</Text>
       <Text>Content: {body}</Text>
-      <Text>On: {date}</Text>
+      <Text>On: {convertFromTimestampToReadable(date)}</Text>
     </View>
     </TouchableOpacity>
   );
